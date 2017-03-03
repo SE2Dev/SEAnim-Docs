@@ -31,15 +31,24 @@ typedef char string_t[];
 //
 // The frame_t data type is used to describe frame indices and offsets, its size is automatically determined by the number of frames in the animation
 //
-#if frameCount <= 0xFF
+#if frameCount - 1 <= 0xFF
 	typedef uint8_t frame_t;
-#elif frameCount <= 0xFFFF
+#elif frameCount - 1 <= 0xFFFF
 	typedef uint16_t frame_t;
-#else //elif frameCount <= 0xFFFFFFFF
+#else //elif frameCount - 1 <= 0xFFFFFFFF
 	typedef uint32_t frame_t;
 #endif
 
-// bone_t follows the same rules as frame_t but is based on the bone count
+//
+// bone_t data type is used to describe bone indicies, its size is automatically determined by the number of bones in the animation
+//
+#if boneCount <= 0xFF
+	typedef uint8_t bone_t;
+#elif boneCount <= 0xFFFF
+	typedef uint16_t bone_t;
+#else //elif boneCount <= 0xFFFFFFFF
+	typedef uint32_t bone_t;
+#endif
 
 // Position values use centimeters (cm)
 ```
@@ -98,6 +107,12 @@ struct SEAnim_Header
 	uint8_t reserved1[2];
 
 	float framerate;
+
+	// frameCount describes the length of the animation (in frames)
+	// It is used to determine the size of frame_t
+	// This should be equal to the largest frame number in the anim (Including keys & notes) plus 1
+	// Ex: An anim with keys on frame 0, 5 and 8 - frameCount would be 9
+	//     An anim with keys on frame 4, 7, and 14 - frameCount would be 15
 	uint32_t frameCount;
 
 	// Is 0 if ( presenceFlags & SEANIM_PRESENCE_BONE ) is false
@@ -240,7 +255,7 @@ struct BoneRotData
 struct BoneScaleData
 {
 	frame_t frame;
-	vec3_t scale;
+	vec3_t scale; // 1.0 is the default scale, 2.0 is twice as big, and 0.5 is half size
 }
 
 //

@@ -3,7 +3,7 @@
 # Open-Source Binary Animation Format
 
 ## [Specification](spec.md)
-SEAnim file format specification for version 1.
+SEAnim file format specification for version 1.0.1.
 
 ## Plugins
 SEAnim plugins for various 3D software suites.
