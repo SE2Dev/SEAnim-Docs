@@ -8,7 +8,7 @@ SEAnim file format specification for version 1.0.1.
 ## Plugins
 SEAnim plugins for various 3D software suites.
 + [io_anim_seanim](https://github.com/SE2Dev/io_anim_seanim) (Blender)
-+ [SEATools](https://github.com/dtzxporter/SEATools) (Maya)
++ [SETools](https://github.com/dtzxporter/SETools) (Maya)
 
 ## Changes
 | Version | Commit | Remarks |
