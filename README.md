@@ -10,6 +10,11 @@ SEAnim plugins for various 3D software suites.
 + [io_anim_seanim](https://github.com/SE2Dev/io_anim_seanim) (Blender)
 + [SETools](https://github.com/dtzxporter/SETools) (Maya)
 
+## Libraries
+Libraries that handle reading / writing SEAnim files.
++ [seanim.py](https://github.com/SE2Dev/io_anim_seanim/blob/master/seanim.py) (Python) - Part of the *io_anim_seanim* plugin above
++ [SELibDotNet](https://github.com/dtzxporter/SELibDotNet) (.NET)
+
 ## Changes
 | Version | Commit | Remarks |
 |:--------|:-------|:--------|
