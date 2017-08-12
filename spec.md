@@ -54,7 +54,7 @@ typedef char string_t[];
 ```
 ---
 ## SEAnim File Structure
-The general structure of an *.seanim file conists of a 6 byte magic value containing the characters 'SEAnim' followed by a 16bit version identifier, the file [header](#seanim-header), and then the data blocks.
+The general structure of a *.seanim file conists of a 6 byte magic value containing the characters 'SEAnim' followed by a 16bit version identifier, the file [header](#seanim-header), and then the data blocks.
 The data blocks must follow the order defined below; Although each of these data blocks is optional, there must be *at least* 1 data block (excluding the custom data block) present within a given file. (See [here](#seanim-data-flags) for more information on how to describe the presence of each of these data blocks).
 ```c++
 struct SEAnim_File
@@ -63,19 +63,19 @@ struct SEAnim_File
 	uint16_t version;	// The file version - the current version is 0x1
 	SEAnim_Header header;
 	
-	if(header.flags & SEANIM_PRESENCE_BONE)
+	if (header.dataPresenceFlags & SEANIM_PRESENCE_BONE)
 	{
 		string_t bone[header.boneCount];
 		SEAnim_BoneModifier[header.boneAnimModifierCount];
 		SEAnim_BoneData[header.boneCount];
 	}
 
-	if(header.flags & SEANIM_PRESENCE_NOTE)
+	if (header.dataPresenceFlags & SEANIM_PRESENCE_NOTE)
 	{
 		SEAnim_Note notes[header.noteCount];
 	}
 
-	if(header.flags & SEANIM_PRESENCE_CUSTOM)
+	if (header.dataPresenceFlags & SEANIM_PRESENCE_CUSTOM)
 	{
 		uint32_t size;
 		uint8_t data[size];
@@ -84,28 +84,29 @@ struct SEAnim_File
 ```
 
 ## SEAnim_Header
-The following defines the structure for the header structure of an SEAnim file. Any reserved fields should be set to 0.
+The following defines the structure for the header structure of a SEAnim file. Any reserved fields should be set to 0.
 ```c++
 struct SEAnim_Header
 {
-	// Contains the size of the header block in bytes, any extra data is ignored
-	uint16_t headerSize; //currently 0x1C
+	// Contains the size of the header block in bytes, any extra data is ignored, ignoring headerSize itself.
+	uint16_t headerSize; // Currently 0x1C
 
-	// The type of animation data that is stored, matches an SEANIM_TYPE
+	// The type of animation data that is stored, matches SEANIM_TYPE enum
 	uint8_t animType;
 
-	// Bitwise flags that define the properties for the animation itself
+	// Bitwise flags that define the properties for the animation itself, matches SEANIM_FLAGS enum
 	uint8_t animFlags;
 
-	// Bitwise flags that define which data blocks are present, and properties for those data blocks
+	// Bitwise flags that define which data blocks are present, and properties for those data blocks, matches SEANIM_PRESENCE_FLAGS enum
 	uint8_t dataPresenceFlags;
 
-	// Bitwise flags containing property information pertaining regarding the data in the file
+	// Bitwise flags containing property information pertaining regarding the data in the file, matches SEANIM_PROPERTY_FLAGS enum
 	uint8_t dataPropertyFlags;
 
 	// RESERVED - Should be 0
 	uint8_t reserved1[2];
-
+	
+	// The framerate at which this animation plays at
 	float framerate;
 
 	// frameCount describes the length of the animation (in frames)
@@ -115,19 +116,21 @@ struct SEAnim_Header
 	//     An anim with keys on frame 4, 7, and 14 - frameCount would be 15
 	uint32_t frameCount;
 
-	// Is 0 if ( presenceFlags & SEANIM_PRESENCE_BONE ) is false
+	// Is 0 if ( dataPresenceFlags & SEANIM_PRESENCE_BONE ) is false
 	uint32_t boneCount;
-	uint8_t boneAnimModifierCount; // The number of animType modifier bones
+	
+	// The number of animType modifier bones
+	uint8_t boneAnimModifierCount;
 
 	// RESERVED - Should be 0
 	uint8_t reserved2[3];
 
-	// Is 0 if ( presenceFlags & SEANIM_PRESENCE_NOTE ) is false
+	// Is 0 if ( dataPresenceFlags & SEANIM_PRESENCE_NOTE ) is false
 	uint32_t noteCount;
 }
 ```
 ## SEANIM_TYPE
-In an SEANIM_TYPE_DELTA animation, the first bone will contain the delta information for the animation.
+In a SEANIM_TYPE_DELTA animation, the first bone will contain the delta information for the animation.
 ```c++
 enum SEANIM_TYPE
 {
@@ -193,8 +196,8 @@ enum SEANIM_FLAGS
 	//RESERVED_2		= 1 << 3, // ALWAYS FALSE
 	//RESERVED_3		= 1 << 4, // ALWAYS FALSE
 	//RESERVED_4		= 1 << 5, // ALWAYS FALSE
-	//RESERVED_5		= 1 << 1, // ALWAYS FALSE
-	//RESERVED_6		= 1 << 2, // ALWAYS FALSE
+	//RESERVED_5		= 1 << 6, // ALWAYS FALSE
+	//RESERVED_6		= 1 << 7, // ALWAYS FALSE
 }
 ```
 
