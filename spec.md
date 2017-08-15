@@ -88,7 +88,7 @@ The following defines the structure for the header structure of a SEAnim file. A
 ```c++
 struct SEAnim_Header
 {
-	// Contains the size of the header block in bytes, any extra data is ignored, ignoring headerSize itself.
+	// Contains the size of the header block (excluding headerSize itself) in bytes, any extra data is ignored
 	uint16_t headerSize; // Currently 0x1C
 
 	// The type of animation data that is stored, matches SEANIM_TYPE enum
