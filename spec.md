@@ -170,7 +170,7 @@ SEANIM_PROPERTY_FLAGS describes the bitfields used by dataPropertyFlags in the [
 ```c++
 enum SEANIM_PROPERTY_FLAGS
 {
-	SEANIM_PRECISION_HIGH	1 << 0; // Use double precision floating point vectors instead of single precision
+	SEANIM_PRECISION_HIGH =	1 << 0, // Use double precision floating point vectors instead of single precision
 	//RESERVED_1		= 1 << 1, // ALWAYS FALSE
 	//RESERVED_2		= 1 << 2, // ALWAYS FALSE
 	//RESERVED_3		= 1 << 3, // ALWAYS FALSE
