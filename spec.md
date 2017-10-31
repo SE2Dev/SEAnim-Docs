@@ -31,11 +31,11 @@ typedef char string_t[];
 //
 // The frame_t data type is used to describe frame indices and offsets, its size is automatically determined by the number of frames in the animation
 //
-#if frameCount - 1 <= 0xFF
+#if frameCount <= 0xFF
 	typedef uint8_t frame_t;
-#elif frameCount - 1 <= 0xFFFF
+#elif frameCount <= 0xFFFF
 	typedef uint16_t frame_t;
-#else //elif frameCount - 1 <= 0xFFFFFFFF
+#else //elif frameCount <= 0xFFFFFFFF
 	typedef uint32_t frame_t;
 #endif
 
