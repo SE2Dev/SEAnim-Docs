@@ -20,3 +20,4 @@ Libraries that handle reading / writing SEAnim files.
 |:--------|:-------|:--------|
 | v1.0.0 | b8f36bb7d9ab450884f640d25cef1f77253ccffc | Initial Release |
 | v1.0.1 | 3c93edaabc6a34f59e4dbb92a493ddd2265a9668 | Revision 1 - Corrects various spec issues with frame_t and bone_t; Clarifies ambiguous definitions |
+| v1.0.2 | 5dd1efb9342ceab90c77dbd689852608a17ccc74 | Revision 2 - Corrects an issue where the incorrect type could be chosen for frame_t |
