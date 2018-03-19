@@ -50,7 +50,7 @@ typedef char string_t[];
 	typedef uint32_t bone_t;
 #endif
 
-// Position values use centimeters (cm)
+// Position values should be implemented in the default unit of the importer scene.
 ```
 ---
 ## SEAnim File Structure
