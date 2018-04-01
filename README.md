@@ -14,6 +14,7 @@ SEAnim plugins for various 3D software suites.
 Libraries that handle reading / writing SEAnim files.
 + [seanim.py](https://github.com/SE2Dev/io_anim_seanim/blob/master/seanim.py) (Python) - Part of the *io_anim_seanim* plugin above
 + [SELibDotNet](https://github.com/dtzxporter/SELibDotNet) (.NET)
++ [SELib](https://github.com/Ray1235/SELib) (C) - portable SEAnim library with minimal dependencies
 
 ## Changes
 | Version | Commit | Remarks |
